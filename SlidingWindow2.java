@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
+// LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS
 public class SlidingWindow2 {
     public int lengthOfLongestSubstring(String s) {
         Set<Character> charSet = new HashSet<>();
