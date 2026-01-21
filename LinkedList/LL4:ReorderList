@@ -11,70 +11,67 @@
 
 class Solution {
     public void reorderList(ListNode head) {
-        ListNode first = head;
-        ListNode last = null;
+        ListNode startingNode = head;
         int size = 0;
-        while (head != null) { // count size
-            if (head.next == null) last = head;
+        while (head != null) { // METHOD: Find size of list
             head = head.next;
             size++;
         }
-        head = first;
+        int mid = (size / 2) - 1;
+        head = startingNode; // Back to the start
 
-        int mid = size / 2;
-        int index = 0;
         ListNode listA = head;
         ListNode listB = null;
-        // System.out.println(head.val);
-        while (index < mid) {
-            ListNode goBack = listA;
-            listA = listA.next;
-            if (index + 1 == mid) {
-                listB = listA.next;
-                listA = goBack;
-                listA.next = null;
-            }
-            // System.out.println(index);
+        ListNode nextNodeListA = head;
+        ListNode nextNodeListB = null;
+        int index = 0;
+        while (head != null) {
+            head = head.next;
             index++;
-        }
-        head = first;
-
-        while (listA != null && listB != null) {
-            ListNode listNextA = listA;
-            ListNode listNextB = listB;
-
-            if (listA.next != null) {
-                listNextA = listA.next;
-                 listA.next = listB;
-            listA = listNextA;
-            } else {
-                break;
-            }           
-
-    if (listB.next != null) {
-                listNextB = listB.next;
-                 listB.next = listA;
-            listB = listNextB;
-            } else {
-                break;
+            if (index == mid) {
+                listB = head.next;
+                head.next = null;
             }
-
-           
         }
-head = first;
-        // listB = endOfFirstHalf.next;
-        // ListNode reversedSecondHalf = reverseList(listB);
+        head = startingNode;
 
-        // while (head != null && reversedSecondHalf != null) {
-        //     ListNode saveFirstNext = head.next; // 4
-        //     ListNode saveSecondNext = reversedSecondHalf.next; // 6
-
-        //     head.next = reversedSecondHalf;
-        //     reversedSecondHalf.next = head; // 6
-        //     head = saveFirstNext;
-        //     reversedSecondHalf = saveSecondNext;
+        // while (listA != null) {
+    
+        //     System.out.println(listA.val);
+        //             listA = listA.next;
         // }
+
+        // System.out.println();
+        listB = reverseList(listB);
+
+        nextNodeListA = listA.next;
+        listA.next = listB;
+        listA = nextNodeListA;
+
+        nextNodeListB = listB.next;
+        listB.next = listA;
+        listB = nextNodeListB;
+
+        nextNodeListA = listA.next;
+        if (nextNodeListA == null) {
+            listA.next = listB;   
+        }
+        head = startingNode;
     }
+        // listA.next = listB;
+        // listA = nextNodeListA;
+
+        // 2 4 null
+        // 8 6 null
+        // listA = 2 8 4
+        // listB = 6
+        // newNodeListA = null
+
+    //     while (listB != null) {
+    //         System.out.println(listB.val);
+    //                     listB = listB.next;
+    //     }
+    // }
 
     private ListNode reverseList(ListNode head) {
         ListNode prev = null;
