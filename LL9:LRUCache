@@ -1,5 +1,4 @@
-// LRU CACHE
-class LinkedList9 {
+class Solution {
     class Node {
         int key;
         int value;
