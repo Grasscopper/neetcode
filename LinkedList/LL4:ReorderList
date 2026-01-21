@@ -44,18 +44,55 @@ class Solution {
         // System.out.println();
         listB = reverseList(listB);
 
-        nextNodeListA = listA.next;
+        // BLOCK A START
+        for (int ii = 0; ii < mid + 2; ii++) {
+            if (ii % 2 == 0) {
+   nextNodeListA = listA.next;
+        if (nextNodeListA == null) {
+            listA.next = listB;
+        } else {
         listA.next = listB;
         listA = nextNodeListA;
-
+        }
+            } else if {
         nextNodeListB = listB.next;
+        if (nextNodeListB == null) {
+            listB.next = listA;
+        } else {
         listB.next = listA;
         listB = nextNodeListB;
-
-        nextNodeListA = listA.next;
-        if (nextNodeListA == null) {
-            listA.next = listB;   
         }
+            }
+        }
+        // nextNodeListA = listA.next;
+        // if (nextNodeListA == null) {
+        //     listA.next = listB;
+        // } else {
+        // listA.next = listB;
+        // listA = nextNodeListA;
+        // }
+        // BLOCK A END
+
+        // BLOCK B START
+        // nextNodeListB = listB.next;
+        // if (nextNodeListB == null) {
+        //     listB.next = listA;
+        // } else {
+        // listB.next = listA;
+        // listB = nextNodeListB;
+        // }
+        // BLOCK B END
+
+        // nextNodeListA = listA.next;
+        // if (nextNodeListA == null) {
+        //     listA.next = listB;
+        // } else {
+        // listA.next = listB;
+        // listA = nextNodeListA;
+        // }
+
+
+
         head = startingNode;
     }
         // listA.next = listB;
