@@ -1,0 +1,142 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+class Solution {
+    public void reorderList(ListNode head) {
+        ListNode startingNode = head;
+        int size = 0;
+        while (head != null) { // METHOD: Find size of list
+            head = head.next;
+            size++;
+        }
+        int mid = (size / 2) - 1;
+        head = startingNode; // Back to the start
+
+        ListNode listA = head;
+        ListNode listB = null;
+        ListNode nextNodeListA = head;
+        ListNode nextNodeListB = null;
+        int index = 0;
+        while (head != null) {
+            head = head.next;
+            index++;
+            if (index == mid) {
+                listB = head.next;
+                head.next = null;
+            }
+        }
+        head = startingNode;
+
+        // while (listA != null) {
+    
+        //     System.out.println(listA.val);
+        //             listA = listA.next;
+        // }
+
+        // System.out.println();
+        listB = reverseList(listB);
+
+        /**
+        listA [1, null]
+        listB [3, 2 null]
+
+        */
+        ListNode first = listA;
+        ListNode second = listB;
+        while (first != null) {
+            ListNode tmp1 = first.next;
+            ListNode tmp2 = second.next;
+            first.next = second;
+            second.next = tmp1;
+            first = tmp1;
+            second = tmp2;
+        }
+
+        // BLOCK A START
+//         for (int ii = 0; ii < mid + 2; ii++) {
+//             if (ii % 2 == 0) {
+//    nextNodeListA = listA.next;
+//         if (nextNodeListA == null) {
+//             listA.next = listB;
+//         } else {
+//         listA.next = listB;
+//         listA = nextNodeListA;
+//         }
+//             } else {
+//         nextNodeListB = listB.next;
+//         if (nextNodeListB == null) {
+//             listB.next = listA;
+//         } else {
+//         listB.next = listA;
+//         listB = nextNodeListB;
+//         }
+//             }
+//         }
+        // nextNodeListA = listA.next;
+        // if (nextNodeListA == null) {
+        //     listA.next = listB;
+        // } else {
+        // listA.next = listB;
+        // listA = nextNodeListA;
+        // }
+        // BLOCK A END
+
+        // BLOCK B START
+        // nextNodeListB = listB.next;
+        // if (nextNodeListB == null) {
+        //     listB.next = listA;
+        // } else {
+        // listB.next = listA;
+        // listB = nextNodeListB;
+        // }
+        // BLOCK B END
+
+        // nextNodeListA = listA.next;
+        // if (nextNodeListA == null) {
+        //     listA.next = listB;
+        // } else {
+        // listA.next = listB;
+        // listA = nextNodeListA;
+        // }
+
+
+
+        head = startingNode;
+    }
+        // listA.next = listB;
+        // listA = nextNodeListA;
+
+        // 2 4 null
+        // 8 6 null
+        // listA = 2 8 4
+        // listB = 6
+        // newNodeListA = null
+
+    //     while (listB != null) {
+    //         System.out.println(listB.val);
+    //                     listB = listB.next;
+    //     }
+    // }
+
+    private ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+
+        while (head != null) {
+            ListNode next = head.next;
+
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+
+        return prev;
+    }
+}

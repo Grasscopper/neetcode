@@ -1,5 +1,4 @@
-// BEST TIME TO BUY AND SELL STOCK
-class SlidingWindow1 {
+class Solution {
     public int maxProfit(int[] prices) {
         int maxProfit = 0;
         int lowestBuyPrice = prices[0];
